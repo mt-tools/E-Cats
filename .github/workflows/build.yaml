@@ -72,12 +72,10 @@ jobs:
           cache: true
 
       - name: Setup Flutter
-        if: ${{ !(startsWith(matrix.os, 'windows-11-arm') || startsWith(matrix.os, 'ubuntu-24.04-arm')) }}
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.22.1'
-          channel: 'stable'
-          cache: true
+  if: ${{ !(startsWith(matrix.os, 'windows-11-arm') || startsWith(matrix.os, 'ubuntu-24.04-arm')) }}
+  run: |
+    git clone https://github.com/flutter/flutter.git --branch 3.22.1 --depth 1
+    echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
 
       - name: Get Flutter Dependency
         run: flutter pub get
