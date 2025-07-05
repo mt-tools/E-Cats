@@ -145,12 +145,6 @@ jobs:
             git config --local user.name "chen08209"
             git commit -m "Update changelog"
             git push
-            if [ $? -eq 0 ]; then
-              echo "Push succeeded"
-            else
-              echo "Push failed"
-              exit 1
-            fi
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
